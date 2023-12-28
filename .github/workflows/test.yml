@@ -1,17 +1,23 @@
-name: Install FPC on Ubuntu
+name: Install FPC and Build Project
 
 on: 
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2  
+      uses: actions/checkout@v2
 
     - name: Install FPC
       run: |
-        sudo apt update  # Aktualisiert die Paketliste
-        sudo apt install fpc -y  # Installiert den Free Pascal Compiler
+        sudo apt update
+        sudo apt install fpc -y
+
+    - name: Build and Install Project
+      run: |
+        make clean
+        make all
+        make install INSTALL_PREFIX=fpcbuild
