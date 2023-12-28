@@ -1,0 +1,17 @@
+name: Install FPC on Ubuntu
+
+on: 
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  
+
+    - name: Install FPC
+      run: |
+        sudo apt update  # Aktualisiert die Paketliste
+        sudo apt install fpc -y  # Installiert den Free Pascal Compiler
